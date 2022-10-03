@@ -8,11 +8,14 @@ export function Button(props: {
   return (
     <Link
       to="/"
-      className={classNames("py-3 px-9 text-sm rounded-md", {
-        "bg-white text-principal-900": props.type === "primary",
-        "bg-secundary-700 text-white": props.type === "secundary",
-        "border border-white text-white": props.type === "tertiary",
-      })}
+      className={classNames(
+        "min-h-[50px] min-w-[160px] text-sm rounded-md flex items-center justify-center",
+        {
+          "bg-white text-principal-900": props.type === "primary",
+          "bg-secundary-700 text-white": props.type === "secundary",
+          "border border-white text-white": props.type === "tertiary",
+        }
+      )}
     >
       {props.text}
     </Link>

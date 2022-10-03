@@ -6,6 +6,7 @@ export function LogoPurple() {
       height="101"
       fill="none"
       viewBox="0 0 432 101"
+      className="z-50"
     >
       <rect
         width="18"

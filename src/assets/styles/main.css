@@ -5,3 +5,17 @@
 .container {
   @apply max-w-[1260px] m-auto;
 }
+
+.blur-effect {
+  @apply before:-z-10  before:blur-[150px] 
+  before:rounded-full before:bg-secundary-700/40 before:absolute before:w-[45%] before:h-[800px]
+  before:-top-32;
+}
+
+.smokeOne {
+  @apply before:absolute before:left-0 before:z-0 before:top-[360px]  before:bg-smokeOne before:bg-cover before:bg-no-repeat 
+  before:h-[964px] before:w-[720px];
+}
+.slide-content {
+  @apply !max-w-[333px];
+}
