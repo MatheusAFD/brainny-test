@@ -5,9 +5,9 @@ export function Header() {
   return (
     <>
       <header className="flex justify-between container pt-[88px]">
-        <LogoWhite width={142} height={38} />
+        <LogoWhite width={164} height={38} />
 
-        <ul className="flex gap-8 text-white">
+        <ul className="flex items-center gap-11 text-white">
           <li>Inicio</li>
           <li>Planos</li>
           <li>

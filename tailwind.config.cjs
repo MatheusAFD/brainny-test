@@ -7,8 +7,13 @@ module.exports = {
         sans: ["Poppins", "sans-serif"],
       },
       backgroundImage: {
-        star: "url(/star.png)",
+        detail: "url(/detail.png)",
+        smokeOne: "url(/smokeOne.png)",
+        smokeTwo: "url(/smokeTwo.png)",
+        "card-gradient":
+          "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.8)), #8A53FF;",
       },
+
       colors: {
         principal: {
           900: "#330693",

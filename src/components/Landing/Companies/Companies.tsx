@@ -5,9 +5,10 @@ import goStudy from "../../../assets/img/companies/goStudy.png";
 
 export function Companies() {
   return (
-    <section className="container flex justify-evenly items-center">
+    <section className="container flex justify-evenly items-center ">
+      <div className="smokeOne"></div>
       {[brainny, amoPet, bus, goStudy].map((src) => {
-        return <img src={src} alt={`${src} image`} className="" />;
+        return <img src={src} alt={`${src} image`} className="z-30" />;
       })}
     </section>
   );

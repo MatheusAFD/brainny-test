@@ -6,6 +6,7 @@ export function LogoBlack() {
       height="101"
       fill="none"
       viewBox="0 0 432 101"
+      className="z-50"
     >
       <rect width="18" height="13" x="10" y="1.064" fill="#000" rx="6.5"></rect>
       <rect width="15" height="13" y="87.064" fill="#000" rx="6.5"></rect>
