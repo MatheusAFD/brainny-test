@@ -11,8 +11,6 @@ export function Pricing() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  console.log(currentSlide);
-
   const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     loop: true,
@@ -39,8 +37,6 @@ export function Pricing() {
     slides: { perView: 1, origin: "center" },
   });
 
-  console.log(ref);
-
   return (
     <section className=" container mt-[90px] pb-[100px] pt-[90px]  flex flex-col justify-center items-center ">
       <h2 className="text-4xl font-extrabold text-white leading-[60px]">
@@ -66,8 +62,6 @@ export function Pricing() {
           className="mt-[70px] m-auto max-w-[350px] sm:max-w-[350px] md:max-w-[750px]  xl:max-w-[960px]  flex gap-y-10 keen-slider z-0 items-center"
         >
           {Object.entries(PricingData).map(([key, value]) => {
-            console.log(key, currentSlide);
-
             return (
               <CardPricing
                 price={value.price}
