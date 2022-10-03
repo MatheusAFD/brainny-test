@@ -17,11 +17,11 @@ export function Login() {
       },
     });
 
-    console.log(response.data);
+    console.log(response);
 
-    if (response) {
-      localStorage.setItem("token", `${response.data?.login.jwt}`);
-    }
+    // if (response) {
+    //   localStorage.setItem("token", `${response.data?.login.jwt}`);
+    // }
   }
 
   return (
