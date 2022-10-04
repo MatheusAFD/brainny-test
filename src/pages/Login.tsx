@@ -5,11 +5,13 @@ import { LogoPurple } from "../components/Logo/LogoPurple";
 import family from "../assets/img/family.png";
 
 export function Login() {
+  localStorage.clear();
+
   const { register, handleSubmit } = useForm();
   const { handleLogin } = useContext(Context);
 
-  async function handleSignIn(data: { email?: string; password?: string }) {
-    await handleLogin(data.email, data.password);
+  function handleSignIn(data: { email?: string; password?: string }) {
+    handleLogin(data.email, data.password);
   }
 
   return (

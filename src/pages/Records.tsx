@@ -1,14 +1,24 @@
+import { useContext } from "react";
 import { CardList } from "../components/Dashboard/CardList";
 import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
+import { Context } from "../Context/AuthContext";
 import { useRegisteredTimesUserByUserQuery } from "../graphql/generated";
 
 export function Records() {
   const userId = String(localStorage.getItem("userId"));
 
+  // const { user } = useContext(Context);
+  // console.log(user.id);
+
   const { data, loading } = useRegisteredTimesUserByUserQuery({
     variables: {
       id: userId,
+    },
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     },
   });
 

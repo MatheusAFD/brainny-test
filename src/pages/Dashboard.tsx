@@ -1,14 +1,17 @@
+import { useRegisteredTimesQuery } from "../graphql/generated";
+
 import { CardList } from "../components/Dashboard/CardList";
 import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { useRegisteredTimesQuery } from "../graphql/generated";
-
-import { Context } from "../Context/AuthContext";
-import { useContext } from "react";
 
 export function Dashboard() {
-  const { data } = useRegisteredTimesQuery();
-  const { user } = useContext(Context);
+  const { data } = useRegisteredTimesQuery({
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    },
+  });
 
   return (
     <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">

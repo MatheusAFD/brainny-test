@@ -6,7 +6,6 @@ import { useLoginMutation } from "../graphql/generated";
 interface AuthContextProps {
   children: ReactNode;
 }
-
 interface Props {
   handleLogin: any;
   handleLogout: any;
@@ -17,7 +16,8 @@ interface SignInData {
   email: string;
   password: string;
 }
-const Context = createContext<Props>();
+
+const Context = createContext<Props | undefined>(undefined);
 
 function AuthProvider(props: AuthContextProps) {
   const [login] = useLoginMutation();
