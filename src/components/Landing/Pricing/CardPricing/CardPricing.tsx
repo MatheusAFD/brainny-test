@@ -113,7 +113,7 @@ export function CardPricing(props: CardPricingProps) {
 
         {props.showButton && (
           <div className="mt-[30px]">
-            <Button type="secundary" text="Assinar agora" />
+            <Button to="" type="secundary" text="Assinar agora" />
           </div>
         )}
       </div>
