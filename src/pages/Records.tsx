@@ -1,12 +1,30 @@
+import { useContext } from "react";
+import { CardList } from "../components/Dashboard/CardList";
 import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { useRegisteredTimesQuery } from "../graphql/generated";
+import { Context } from "../Context/AuthContext";
+import { useRegisteredTimesUserByUserQuery } from "../graphql/generated";
 
-import { formatData } from "../utils/format-data";
+export function Records() {
+  const userId = String(localStorage.getItem("userId"));
 
-export function Dashboard() {
-  const { data } = useRegisteredTimesQuery();
+  // const { user } = useContext(Context);
+  // console.log(user.id);
 
+  const { data, loading } = useRegisteredTimesUserByUserQuery({
+    variables: {
+      id: userId,
+    },
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    },
+  });
+
+  console.log("render");
+
+  if (loading) return <h1>loading...</h1>;
   return (
     <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">
       <Sidebar type="colaborator" />
@@ -17,26 +35,18 @@ export function Dashboard() {
           <SpanHead text="Data" />
           <SpanHead text="Hora" className="ml-12" />
         </div>
-        {data?.registeredTimes?.map((colaborator) => {
-          return (
-            <li className="flex items-center gap-4 w-full h-[73px] mb-3 bg-white border border-[#20292e4d] relative rounded-[5px] detail-card-dashboard">
-              <div className="ml-16 w-40">
-                <p className="text-gray-900 font-bold ">
-                  {colaborator?.user?.name}
-                </p>
-                <p className="text-gray-900/50">
-                  {"00" + colaborator?.user?.id?.slice(-3)}
-                </p>
-              </div>
-              <p className="text-gray-900/60">
-                {formatData(colaborator?.created_at, "dd'/'MM'/'yy")}
-              </p>
 
-              <p className="text-gray-900/60 ml-40">
-                {formatData(colaborator?.created_at, "kk':'mm'h'")}
-              </p>
-            </li>
-          );
+        {data?.registeredTimes?.map((colaborator) => {
+          if (!loading)
+            return (
+              <CardList
+                key={colaborator?.id}
+                name={colaborator?.user?.name}
+                id={colaborator?.id}
+                date={colaborator?.created_at}
+                hour={colaborator?.created_at}
+              />
+            );
         })}
       </ul>
     </main>

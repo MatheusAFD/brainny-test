@@ -1,43 +1,17 @@
-import { FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { Context } from "../Context/AuthContext";
 import { LogoPurple } from "../components/Logo/LogoPurple";
-import { useLoginMutation } from "../graphql/generated";
-
 import family from "../assets/img/family.png";
 
 export function Login() {
-  const [email, setEmail] = useState<any>();
-  const [password, setPassword] = useState<any>();
-  const [response, setResponse] = useState<any>();
+  localStorage.clear();
 
-  console.debug("email", email);
-  console.debug("password", password);
+  const { register, handleSubmit } = useForm();
+  const { handleLogin } = useContext(Context);
 
-  const navigate = useNavigate();
-
-  const [login] = useLoginMutation();
-
-  async function handleLogin(event: FormEvent) {
-    event?.preventDefault();
-
-    const response = await login({
-      variables: {
-        email,
-        password,
-      },
-    });
-
-    if (response) {
-      localStorage.setItem("token", `${response.data?.login.jwt}`);
-    }
-
-    setResponse(response);
-  }
-
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    navigate("/dashboard");
+  function handleSignIn(data: { email?: string; password?: string }) {
+    handleLogin(data.email, data.password);
   }
 
   return (
@@ -53,7 +27,7 @@ export function Login() {
       </div>
 
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit(handleSignIn)}
         className="flex flex-col  m-[40px_auto_5px_auto] "
       >
         <LogoPurple width={322} height={75} />
@@ -65,24 +39,19 @@ export function Login() {
           Email
         </label>
         <input
+          {...register("email", { required: true })}
           type="email"
           className="w-[400px] p-2 rounded-[5px] border border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto"
           placeholder="Email"
-          onChange={(e: any) => {
-            setEmail(e.target.value);
-          }}
         />
 
         <label htmlFor="" className="mt-5">
           Senha
         </label>
         <input
-          type="password"
+          {...register("password", { required: true })}
           className="w-[400px] p-2 rounded-[5px] border border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto"
           placeholder="Senha"
-          onChange={(e: any) => {
-            setPassword(e.target.value);
-          }}
         />
         <a
           href=""

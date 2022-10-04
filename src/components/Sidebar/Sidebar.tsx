@@ -1,9 +1,15 @@
+import { useContext } from "react";
+
+import { Context } from "../../Context/AuthContext";
+
 import { LogoPurple } from "../Logo/LogoPurple";
 import order from "../../assets/img/order.png";
 import logout from "../../assets/img/logout.png";
 import box from "../../assets/img/box.png";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
+  const { handleLogout } = useContext(Context);
+
   return (
     <nav className="w-[180px] bg-white h-screen ">
       <div className="flex justify-center items-center w-full h-24">
@@ -18,15 +24,13 @@ export function Sidebar(props: { type: "admin" | "colaborator" }) {
         {props.type === "admin" ? <>Dashboard</> : <>Meus registros</>}
       </span>
 
-      <span
+      <button
         className="absolute bottom-0 px-4 flex gap-[10px] cursor-pointer py-6"
-        onClick={() => {
-          localStorage.clear();
-        }}
+        onClick={handleLogout}
       >
         <img src={logout} className="w-6 h-6" />
         Sair
-      </span>
+      </button>
     </nav>
   );
 }
