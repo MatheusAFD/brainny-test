@@ -985,7 +985,14 @@ export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Us
 export type RegisteredTimesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RegisteredTimesQuery = { __typename?: 'Query', registeredTimes?: Array<{ __typename?: 'RegisteredTime', id: string, created_at: any, updated_at: any, user?: { __typename?: 'UsersPermissionsUser', id: string, name?: string | null, username: string, email: string, role?: { __typename?: 'UsersPermissionsRole', id: string, name: string } | null } | null } | null> | null };
+export type RegisteredTimesQuery = { __typename?: 'Query', registeredTimes?: Array<{ __typename?: 'RegisteredTime', id: string, created_at: any, user?: { __typename?: 'UsersPermissionsUser', id: string, name?: string | null, username: string, email: string, role?: { __typename?: 'UsersPermissionsRole', id: string, name: string } | null } | null } | null> | null };
+
+export type RegisteredTimesUserByUserQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type RegisteredTimesUserByUserQuery = { __typename?: 'Query', registeredTimes?: Array<{ __typename?: 'RegisteredTime', id: string, created_at: any, user?: { __typename?: 'UsersPermissionsUser', id: string, name?: string | null, username: string, email: string, role?: { __typename?: 'UsersPermissionsRole', id: string, name: string } | null } | null } | null> | null };
 
 
 export const LoginDocument = gql`
@@ -1035,7 +1042,6 @@ export const RegisteredTimesDocument = gql`
   registeredTimes {
     id
     created_at
-    updated_at
     user {
       id
       name
@@ -1076,3 +1082,49 @@ export function useRegisteredTimesLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type RegisteredTimesQueryHookResult = ReturnType<typeof useRegisteredTimesQuery>;
 export type RegisteredTimesLazyQueryHookResult = ReturnType<typeof useRegisteredTimesLazyQuery>;
 export type RegisteredTimesQueryResult = Apollo.QueryResult<RegisteredTimesQuery, RegisteredTimesQueryVariables>;
+export const RegisteredTimesUserByUserDocument = gql`
+    query RegisteredTimesUserByUser($id: ID!) {
+  registeredTimes(where: {user: {id: $id}}) {
+    id
+    created_at
+    user {
+      id
+      name
+      username
+      email
+      role {
+        id
+        name
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useRegisteredTimesUserByUserQuery__
+ *
+ * To run a query within a React component, call `useRegisteredTimesUserByUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRegisteredTimesUserByUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRegisteredTimesUserByUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRegisteredTimesUserByUserQuery(baseOptions: Apollo.QueryHookOptions<RegisteredTimesUserByUserQuery, RegisteredTimesUserByUserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RegisteredTimesUserByUserQuery, RegisteredTimesUserByUserQueryVariables>(RegisteredTimesUserByUserDocument, options);
+      }
+export function useRegisteredTimesUserByUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RegisteredTimesUserByUserQuery, RegisteredTimesUserByUserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RegisteredTimesUserByUserQuery, RegisteredTimesUserByUserQueryVariables>(RegisteredTimesUserByUserDocument, options);
+        }
+export type RegisteredTimesUserByUserQueryHookResult = ReturnType<typeof useRegisteredTimesUserByUserQuery>;
+export type RegisteredTimesUserByUserLazyQueryHookResult = ReturnType<typeof useRegisteredTimesUserByUserLazyQuery>;
+export type RegisteredTimesUserByUserQueryResult = Apollo.QueryResult<RegisteredTimesUserByUserQuery, RegisteredTimesUserByUserQueryVariables>;

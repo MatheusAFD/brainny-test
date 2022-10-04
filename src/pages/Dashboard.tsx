@@ -1,20 +1,14 @@
 import { CardList } from "../components/Dashboard/CardList";
 import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
-import { useRegisteredTimesUserByUserQuery } from "../graphql/generated";
+import { useRegisteredTimesQuery } from "../graphql/generated";
 
-export function Records() {
-  const userId = String(localStorage.getItem("userId"));
-
-  const { data } = useRegisteredTimesUserByUserQuery({
-    variables: {
-      id: userId,
-    },
-  });
+export function Dashboard() {
+  const { data } = useRegisteredTimesQuery();
 
   return (
     <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">
-      <Sidebar type="colaborator" />
+      <Sidebar type="admin" />
 
       <ul className="p-4 ">
         <div className="flex gap-36 mb-4 mt-10">

@@ -32,12 +32,14 @@ export function Login() {
     }
 
     setResponse(response);
-  }
 
-  const token = localStorage.getItem("token");
+    console.log(response);
 
-  if (token) {
-    navigate("/dashboard");
+    if (response.data?.login.jwt) {
+      if (response.data.login.user.role?.type === "admin") {
+        navigate("/dashboard");
+      } else [navigate("/")];
+    }
   }
 
   return (
