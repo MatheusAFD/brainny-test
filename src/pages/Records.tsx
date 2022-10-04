@@ -6,12 +6,15 @@ import { useRegisteredTimesUserByUserQuery } from "../graphql/generated";
 export function Records() {
   const userId = String(localStorage.getItem("userId"));
 
-  const { data } = useRegisteredTimesUserByUserQuery({
+  const { data, loading } = useRegisteredTimesUserByUserQuery({
     variables: {
       id: userId,
     },
   });
 
+  console.log("render");
+
+  if (loading) return <h1>loading...</h1>;
   return (
     <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">
       <Sidebar type="colaborator" />
@@ -22,15 +25,18 @@ export function Records() {
           <SpanHead text="Data" />
           <SpanHead text="Hora" className="ml-12" />
         </div>
+
         {data?.registeredTimes?.map((colaborator) => {
-          return (
-            <CardList
-              name={colaborator?.user?.name}
-              id={colaborator?.id}
-              date={colaborator?.created_at}
-              hour={colaborator?.created_at}
-            />
-          );
+          if (!loading)
+            return (
+              <CardList
+                key={colaborator?.id}
+                name={colaborator?.user?.name}
+                id={colaborator?.id}
+                date={colaborator?.created_at}
+                hour={colaborator?.created_at}
+              />
+            );
         })}
       </ul>
     </main>

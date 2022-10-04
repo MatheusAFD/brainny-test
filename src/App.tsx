@@ -1,6 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router/Router";
+import { AuthProvider } from "./Context/AuthContext";
 
 import { client } from "../src/lib/apollo";
 
@@ -9,7 +10,9 @@ function App() {
     <div>
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <Router />
+          <AuthProvider>
+            <Router />
+          </AuthProvider>
         </BrowserRouter>
       </ApolloProvider>
     </div>

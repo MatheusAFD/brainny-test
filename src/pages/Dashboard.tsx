@@ -3,8 +3,12 @@ import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { useRegisteredTimesQuery } from "../graphql/generated";
 
+import { Context } from "../Context/AuthContext";
+import { useContext } from "react";
+
 export function Dashboard() {
   const { data } = useRegisteredTimesQuery();
+  const { user } = useContext(Context);
 
   return (
     <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">
@@ -19,6 +23,7 @@ export function Dashboard() {
         {data?.registeredTimes?.map((colaborator) => {
           return (
             <CardList
+              key={colaborator?.id}
               name={colaborator?.user?.name}
               id={colaborator?.id}
               date={colaborator?.created_at}

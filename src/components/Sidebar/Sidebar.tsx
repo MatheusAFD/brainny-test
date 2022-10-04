@@ -1,17 +1,14 @@
+import { useContext } from "react";
+
+import { Context } from "../../Context/AuthContext";
+
 import { LogoPurple } from "../Logo/LogoPurple";
 import order from "../../assets/img/order.png";
 import logout from "../../assets/img/logout.png";
 import box from "../../assets/img/box.png";
-import { useNavigate } from "react-router-dom";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
-  const navigate = useNavigate();
-
-  function handleLogout() {
-    localStorage.clear();
-
-    navigate("/login");
-  }
+  const { handleLogout } = useContext(Context);
 
   return (
     <nav className="w-[180px] bg-white h-screen ">
