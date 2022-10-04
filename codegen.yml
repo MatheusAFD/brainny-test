@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${GRAPHQL_APP_URI}
+schema: ${VITE_API_URI}
 documents: "./src/graphql/**/*.graphql"
 
 generates:

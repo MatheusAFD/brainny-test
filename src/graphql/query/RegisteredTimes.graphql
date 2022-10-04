@@ -1,0 +1,17 @@
+query RegisteredTimes {
+  registeredTimes {
+    id
+    created_at
+    updated_at
+    user {
+      id
+      name
+      username
+      email
+      role {
+        id
+        name
+      }
+    }
+  }
+}

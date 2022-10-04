@@ -982,6 +982,11 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', id: string, username: string, email: string, role?: { __typename?: 'UsersPermissionsMeRole', type?: string | null } | null } } };
 
+export type RegisteredTimesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RegisteredTimesQuery = { __typename?: 'Query', registeredTimes?: Array<{ __typename?: 'RegisteredTime', id: string, created_at: any, updated_at: any, user?: { __typename?: 'UsersPermissionsUser', id: string, name?: string | null, username: string, email: string, role?: { __typename?: 'UsersPermissionsRole', id: string, name: string } | null } | null } | null> | null };
+
 
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
@@ -1025,3 +1030,49 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const RegisteredTimesDocument = gql`
+    query RegisteredTimes {
+  registeredTimes {
+    id
+    created_at
+    updated_at
+    user {
+      id
+      name
+      username
+      email
+      role {
+        id
+        name
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useRegisteredTimesQuery__
+ *
+ * To run a query within a React component, call `useRegisteredTimesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRegisteredTimesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRegisteredTimesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useRegisteredTimesQuery(baseOptions?: Apollo.QueryHookOptions<RegisteredTimesQuery, RegisteredTimesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RegisteredTimesQuery, RegisteredTimesQueryVariables>(RegisteredTimesDocument, options);
+      }
+export function useRegisteredTimesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RegisteredTimesQuery, RegisteredTimesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RegisteredTimesQuery, RegisteredTimesQueryVariables>(RegisteredTimesDocument, options);
+        }
+export type RegisteredTimesQueryHookResult = ReturnType<typeof useRegisteredTimesQuery>;
+export type RegisteredTimesLazyQueryHookResult = ReturnType<typeof useRegisteredTimesLazyQuery>;
+export type RegisteredTimesQueryResult = Apollo.QueryResult<RegisteredTimesQuery, RegisteredTimesQueryVariables>;

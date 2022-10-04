@@ -19,8 +19,8 @@ export function SectionHome() {
         </p>
 
         <div className="flex gap-4">
-          <Button text="Assinar agora" type="secundary" />
-          <Button text="Ver planos" type="tertiary" />
+          <Button to="" text="Assinar agora" type="secundary" />
+          <Button to="" text="Ver planos" type="tertiary" />
         </div>
       </div>
 
