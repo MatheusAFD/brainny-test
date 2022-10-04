@@ -1,9 +1,9 @@
-export function LogoPurple() {
+export function LogoPurple(props: { width: number; height: number }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="432"
-      height="101"
+      width={props.width}
+      height={props.height}
       fill="none"
       viewBox="0 0 432 101"
       className="z-50"

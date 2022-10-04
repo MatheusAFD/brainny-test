@@ -11,7 +11,7 @@ export function Header() {
           <li>Inicio</li>
           <li>Planos</li>
           <li>
-            <Button text="Fazer login" type="primary" />
+            <Button to="login" text="Fazer login" type="primary" />
           </li>
         </ul>
       </header>

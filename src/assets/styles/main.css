@@ -12,10 +12,19 @@
   before:-top-32;
 }
 
+.blur-login {
+  @apply before:-z-10    before:blur-[250px]
+  before:rounded-full before:bg-secundary-700/40 before:-right-0 before:absolute before:w-[100%] before:h-[300px] before:top-[200px];
+}
+
 .smokeOne {
   @apply before:absolute before:left-0 before:z-0 before:top-[360px]  before:bg-smokeOne before:bg-cover before:bg-no-repeat 
   before:h-[964px] before:w-[720px];
 }
 .slide-content {
   @apply !max-w-[333px];
+}
+
+.detail-card-dashboard {
+  @apply before:absolute before:w-[5px] before:h-[45px] before:rounded-[30px] before:bg-secundary-700 before:left-4;
 }

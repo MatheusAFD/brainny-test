@@ -4,10 +4,11 @@ import classNames from "classnames";
 export function Button(props: {
   text: string;
   type: "primary" | "secundary" | "tertiary";
+  to: string | "";
 }) {
   return (
     <Link
-      to="/"
+      to={props.to}
       className={classNames(
         "min-h-[50px] min-w-[160px] text-sm rounded-md flex items-center justify-center",
         {
