@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Context } from "../Context/AuthContext";
+
 import { LogoPurple } from "../components/Logo/LogoPurple";
 import family from "../assets/img/family.png";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export function Login() {
-  localStorage.clear();
-
   const { register, handleSubmit } = useForm();
-
   const { handleLogin } = useContext(Context);
 
-  function handleSignIn(data: { email?: string; password?: string }) {
-    handleLogin(data.email, data.password);
+  async function handleSignIn(data: { email?: string; password?: string }) {
+    await handleLogin(data.email, data.password);
   }
 
   return (

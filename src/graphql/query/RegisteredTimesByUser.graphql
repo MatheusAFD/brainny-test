@@ -1,5 +1,5 @@
 query RegisteredTimesUserByUser($id: ID!) {
-  registeredTimes(where: { user: { id: $id } }) {
+  registeredTimes(where: { user: { id: $id } }, sort: "created_at:DESC") {
     id
     created_at
     user {

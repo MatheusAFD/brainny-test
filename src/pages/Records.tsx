@@ -8,9 +8,6 @@ import { useRegisteredTimesUserByUserQuery } from "../graphql/generated";
 export function Records() {
   const userId = String(localStorage.getItem("userId"));
 
-  // const { user } = useContext(Context);
-  // console.log(user.id);
-
   const { data, loading } = useRegisteredTimesUserByUserQuery({
     variables: {
       id: userId,
@@ -21,8 +18,6 @@ export function Records() {
       },
     },
   });
-
-  console.log("render");
 
   if (loading) return <h1>loading...</h1>;
   return (

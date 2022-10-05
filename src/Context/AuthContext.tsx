@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useLoginMutation } from "../graphql/generated";
 
-interface AuthContextProps {
-  children: ReactNode;
-}
 interface Props {
   handleLogin: (email: string, password: string) => Promise<void>;
   handleLogout: () => void;
@@ -14,9 +11,10 @@ interface Props {
 
 const Context = createContext<Props | undefined | any>(undefined);
 
-function AuthProvider(props: AuthContextProps) {
-  const [login] = useLoginMutation();
+function AuthProvider(props: { children: ReactNode }) {
   const navigate = useNavigate();
+  const [login] = useLoginMutation();
+  const [authenticaded, setAuthenticaded] = useState(false);
 
   async function handleLogin(email: string, password: string) {
     const response = await login({
@@ -29,6 +27,10 @@ function AuthProvider(props: AuthContextProps) {
     if (response) {
       localStorage.setItem("token", `${response.data?.login.jwt}`);
       localStorage.setItem("userId", `${response.data?.login.user.id}`);
+      localStorage.setItem(
+        "roleUser",
+        `${response.data?.login.user.role?.type}`
+      );
       setAuthenticaded(true);
     }
 
@@ -44,8 +46,6 @@ function AuthProvider(props: AuthContextProps) {
 
     navigate("/login");
   }
-
-  const [authenticaded, setAuthenticaded] = useState(false);
 
   const initialValue = {
     handleLogin,

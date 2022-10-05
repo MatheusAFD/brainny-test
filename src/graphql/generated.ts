@@ -1039,7 +1039,7 @@ export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const RegisteredTimesDocument = gql`
     query RegisteredTimes {
-  registeredTimes {
+  registeredTimes(sort: "created_at:DESC") {
     id
     created_at
     user {
@@ -1084,7 +1084,7 @@ export type RegisteredTimesLazyQueryHookResult = ReturnType<typeof useRegistered
 export type RegisteredTimesQueryResult = Apollo.QueryResult<RegisteredTimesQuery, RegisteredTimesQueryVariables>;
 export const RegisteredTimesUserByUserDocument = gql`
     query RegisteredTimesUserByUser($id: ID!) {
-  registeredTimes(where: {user: {id: $id}}) {
+  registeredTimes(where: {user: {id: $id}}, sort: "created_at:DESC") {
     id
     created_at
     user {
