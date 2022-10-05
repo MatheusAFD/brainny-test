@@ -7,17 +7,12 @@ interface AuthContextProps {
   children: ReactNode;
 }
 interface Props {
-  handleLogin: any;
-  handleLogout: any;
-  authenticaded: any;
-  user: any;
-}
-interface SignInData {
-  email: string;
-  password: string;
+  handleLogin: (email: string, password: string) => Promise<void>;
+  handleLogout: () => void;
+  authenticaded: boolean;
 }
 
-const Context = createContext<Props | undefined>(undefined);
+const Context = createContext<Props | undefined | any>(undefined);
 
 function AuthProvider(props: AuthContextProps) {
   const [login] = useLoginMutation();
@@ -37,8 +32,6 @@ function AuthProvider(props: AuthContextProps) {
       setAuthenticaded(true);
     }
 
-    setUser(response.data?.login.user);
-
     if (response.data?.login.jwt) {
       if (response.data.login.user.role?.type === "admin") {
         navigate("/dashboard");
@@ -53,13 +46,11 @@ function AuthProvider(props: AuthContextProps) {
   }
 
   const [authenticaded, setAuthenticaded] = useState(false);
-  const [user, setUser] = useState<any>();
 
   const initialValue = {
     handleLogin,
     handleLogout,
     authenticaded,
-    user,
   };
 
   return (

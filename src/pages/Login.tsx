@@ -8,6 +8,7 @@ export function Login() {
   localStorage.clear();
 
   const { register, handleSubmit } = useForm();
+
   const { handleLogin } = useContext(Context);
 
   function handleSignIn(data: { email?: string; password?: string }) {
