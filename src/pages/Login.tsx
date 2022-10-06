@@ -1,17 +1,16 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { InputGroup, Input, InputRightElement } from "@chakra-ui/react";
 import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
 
 import { Context } from "../Context/AuthContext";
 import { LogoPurple } from "../components/Logo/LogoPurple";
 import family from "../assets/img/family.png";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 
 export function Login() {
+  const { register, handleSubmit } = useForm();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
-  const { register, handleSubmit } = useForm();
   const { handleLogin } = useContext(Context);
 
   async function handleSignIn(data: { email?: string; password?: string }) {
@@ -43,9 +42,10 @@ export function Login() {
           Email
         </label>
         <input
-          {...register("email", { required: true })}
+          {...register("email")}
           type="email"
-          className="w-[400px] p-2 rounded-[5px] border border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto"
+          className="w-[400px] p-2 rounded-[5px] border border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto
+          pl-5 "
           placeholder="Email"
         />
 
@@ -55,9 +55,11 @@ export function Login() {
 
         <InputGroup>
           <Input
+            {...register("password")}
             type={show ? "text" : "password"}
             placeholder="Senha"
-            className="w-[400px] p-2 rounded-[5px] bg-blue-900 border !border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto"
+            p={5}
+            className="w-[400px] rounded-[5px] bg-blue-900 border !border-[#20292e4d] placeholder:text-[#20292E]/4 m-auto"
           />
           <InputRightElement width="4.5rem">
             {show ? (

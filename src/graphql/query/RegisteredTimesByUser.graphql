@@ -1,5 +1,10 @@
+# prettier-ignore
 query RegisteredTimesUserByUser($id: ID!) {
-  registeredTimes(where: { user: { id: $id } }, sort: "created_at:DESC") {
+  registeredTimes(
+    where: { user: { id: $id } }
+    limit: 8
+    sort: "created_at:DESC"
+  ) {
     id
     created_at
     user {

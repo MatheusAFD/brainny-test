@@ -9,9 +9,8 @@ interface PrivateRouteProps {
 
 export function PrivateRoute(props: PrivateRouteProps) {
   const isAuthenticated = localStorage.getItem("token") !== null;
-  const role = localStorage.getItem("roleUser");
 
-  return isAuthenticated && role === "user" ? (
+  return isAuthenticated ? (
     <>{props.children}</>
   ) : (
     <Navigate to={props.redirectTo} />
