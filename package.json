@@ -10,10 +10,15 @@
     "codegen": "graphql-codegen --require dotenv/config"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@apollo/client": "^3.7.0",
+    "@chakra-ui/react": "^2.3.5",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
+    "framer-motion": "^7.5.2",
     "graphql": "^16.6.0",
     "keen-slider": "^6.8.2",
     "phosphor-react": "^1.4.1",

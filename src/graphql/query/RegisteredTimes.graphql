@@ -1,5 +1,5 @@
 query RegisteredTimes {
-  registeredTimes {
+  registeredTimes(limit: 8, sort: "created_at:DESC") {
     id
     created_at
     user {

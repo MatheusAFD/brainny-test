@@ -974,6 +974,13 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type CreateRegisteredTimeMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type CreateRegisteredTimeMutation = { __typename?: 'Mutation', createRegisteredTime?: { __typename?: 'createRegisteredTimePayload', registeredTime?: { __typename?: 'RegisteredTime', id: string, created_at: any, user?: { __typename?: 'UsersPermissionsUser', name?: string | null } | null } | null } | null };
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
@@ -995,6 +1002,45 @@ export type RegisteredTimesUserByUserQueryVariables = Exact<{
 export type RegisteredTimesUserByUserQuery = { __typename?: 'Query', registeredTimes?: Array<{ __typename?: 'RegisteredTime', id: string, created_at: any, user?: { __typename?: 'UsersPermissionsUser', id: string, name?: string | null, username: string, email: string, role?: { __typename?: 'UsersPermissionsRole', id: string, name: string } | null } | null } | null> | null };
 
 
+export const CreateRegisteredTimeDocument = gql`
+    mutation CreateRegisteredTime($id: ID) {
+  createRegisteredTime(input: {data: {user: $id}}) {
+    registeredTime {
+      id
+      user {
+        name
+      }
+      created_at
+    }
+  }
+}
+    `;
+export type CreateRegisteredTimeMutationFn = Apollo.MutationFunction<CreateRegisteredTimeMutation, CreateRegisteredTimeMutationVariables>;
+
+/**
+ * __useCreateRegisteredTimeMutation__
+ *
+ * To run a mutation, you first call `useCreateRegisteredTimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRegisteredTimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRegisteredTimeMutation, { data, loading, error }] = useCreateRegisteredTimeMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCreateRegisteredTimeMutation(baseOptions?: Apollo.MutationHookOptions<CreateRegisteredTimeMutation, CreateRegisteredTimeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateRegisteredTimeMutation, CreateRegisteredTimeMutationVariables>(CreateRegisteredTimeDocument, options);
+      }
+export type CreateRegisteredTimeMutationHookResult = ReturnType<typeof useCreateRegisteredTimeMutation>;
+export type CreateRegisteredTimeMutationResult = Apollo.MutationResult<CreateRegisteredTimeMutation>;
+export type CreateRegisteredTimeMutationOptions = Apollo.BaseMutationOptions<CreateRegisteredTimeMutation, CreateRegisteredTimeMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(input: {identifier: $email, password: $password, provider: "local"}) {
@@ -1039,7 +1085,7 @@ export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
 export const RegisteredTimesDocument = gql`
     query RegisteredTimes {
-  registeredTimes {
+  registeredTimes(limit: 8, sort: "created_at:DESC") {
     id
     created_at
     user {
@@ -1084,7 +1130,7 @@ export type RegisteredTimesLazyQueryHookResult = ReturnType<typeof useRegistered
 export type RegisteredTimesQueryResult = Apollo.QueryResult<RegisteredTimesQuery, RegisteredTimesQueryVariables>;
 export const RegisteredTimesUserByUserDocument = gql`
     query RegisteredTimesUserByUser($id: ID!) {
-  registeredTimes(where: {user: {id: $id}}) {
+  registeredTimes(where: {user: {id: $id}}, limit: 8, sort: "created_at:DESC") {
     id
     created_at
     user {

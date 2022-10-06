@@ -4,8 +4,9 @@ import { Context } from "../../Context/AuthContext";
 
 import { LogoPurple } from "../Logo/LogoPurple";
 import order from "../../assets/img/order.png";
-import logout from "../../assets/img/logout.png";
+
 import box from "../../assets/img/box.png";
+import { LogoutOutlined } from "@ant-design/icons";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
   const { handleLogout } = useContext(Context);
@@ -25,11 +26,11 @@ export function Sidebar(props: { type: "admin" | "colaborator" }) {
       </span>
 
       <button
-        className="absolute bottom-0 px-4 flex gap-[10px] cursor-pointer py-6"
+        className="flex items-center gap-[10px] px-4 absolute bottom-0 cursor-pointer py-6 "
         onClick={handleLogout}
       >
-        <img src={logout} className="w-6 h-6" />
-        Sair
+        <LogoutOutlined className="text-2xl" />
+        <p>Sair</p>
       </button>
     </nav>
   );

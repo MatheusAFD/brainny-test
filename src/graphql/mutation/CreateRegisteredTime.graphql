@@ -1,0 +1,11 @@
+mutation CreateRegisteredTime($id: ID) {
+  createRegisteredTime(input: { data: { user: $id } }) {
+    registeredTime {
+      id
+      user {
+        name
+      }
+      created_at
+    }
+  }
+}

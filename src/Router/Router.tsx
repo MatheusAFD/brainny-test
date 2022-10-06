@@ -14,7 +14,7 @@ export function Router() {
       <Route
         path="/dashboard"
         element={
-          <PrivateRoute redirectTo="/login">
+          <PrivateRoute roleUser="admin" redirectTo="/login">
             <Dashboard />
           </PrivateRoute>
         }
@@ -23,7 +23,7 @@ export function Router() {
       <Route
         path="/meus-registros"
         element={
-          <PrivateRoute redirectTo="/login">
+          <PrivateRoute roleUser="user" redirectTo="/login">
             <Records />
           </PrivateRoute>
         }
