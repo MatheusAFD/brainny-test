@@ -65,36 +65,35 @@ export function Records() {
 
   return (
     <>
-      <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr] ">
-        <Sidebar type="colaborator" />
-        <div className="p-4 flex flex-col items-start">
-          <div className="mt-3">
-            <ButtonRegister
-              size="lg"
-              styleButton="secundary"
-              text="Registrar ponto"
-              onClick={onOpen}
-            />
-          </div>
-          <div className="flex gap-36 mb-4 mt-10">
-            <SpanHead text="Colaborador" />
-            <SpanHead text="Data" />
-            <SpanHead text="Hora" className="ml-12" />
-          </div>
+      <Sidebar type="colaborator" />
 
-          {data?.registeredTimes?.map((colaborator) => {
-            return (
-              <CardList
-                key={colaborator?.id}
-                name={colaborator?.user?.name}
-                id={colaborator?.id}
-                date={colaborator?.created_at}
-                hour={colaborator?.created_at}
-              />
-            );
-          })}
+      <div className="p-4 flex flex-col items-start w-[full] ml-48 bg-[#F2F2F2]">
+        <div className="mt-3">
+          <ButtonRegister
+            size="lg"
+            styleButton="secundary"
+            text="Registrar ponto"
+            onClick={onOpen}
+          />
         </div>
-      </main>
+        <div className="flex gap-36 mb-4 mt-10">
+          <SpanHead text="Colaborador" />
+          <SpanHead text="Data" />
+          <SpanHead text="Hora" className="ml-12" />
+        </div>
+
+        {data?.registeredTimes?.map((colaborator) => {
+          return (
+            <CardList
+              key={colaborator?.id}
+              name={colaborator?.user?.name}
+              id={colaborator?.id}
+              date={colaborator?.created_at}
+              hour={colaborator?.created_at}
+            />
+          );
+        })}
+      </div>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay backdropFilter="auto" backdropBlur="2px" />
