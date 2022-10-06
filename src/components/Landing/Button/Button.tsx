@@ -5,7 +5,6 @@ export function Button(props: {
   text: string;
   type: "primary" | "secundary" | "tertiary";
   to: string | "";
-  className: string;
 }) {
   return (
     <Link
