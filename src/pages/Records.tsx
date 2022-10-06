@@ -19,33 +19,16 @@ import { formatData } from "../utils/format-data";
 import clock from "../assets/img/clock.png";
 
 import { useCreateRegisteredTimeMutation } from "../graphql/generated";
+import { useState } from "react";
 
 export function Records() {
-  const userId = String(localStorage.getItem("userId"));
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const userId = String(localStorage.getItem("userId"));
   const date = new Date();
+  const [loadingMutation, setLoadingMutation] = useState<boolean>();
 
   const [createRegisteredTime] = useCreateRegisteredTimeMutation();
-
-  async function handleCreateRegister() {
-    const response = await createRegisteredTime({
-      variables: {
-        id: userId,
-      },
-      context: {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      },
-    });
-
-    if (response) {
-      onClose();
-      location.reload();
-    }
-  }
-
-  const { data, loading } = useRegisteredTimesUserByUserQuery({
+  const { data, loading, refetch } = useRegisteredTimesUserByUserQuery({
     variables: {
       id: userId,
     },
@@ -55,6 +38,31 @@ export function Records() {
       },
     },
   });
+
+  async function handleCreateRegister() {
+    setLoadingMutation(true);
+    try {
+      const response = await createRegisteredTime({
+        variables: {
+          id: userId,
+        },
+        context: {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      });
+
+      if (response) {
+        onClose();
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoadingMutation(false);
+      refetch({ id: userId });
+    }
+  }
 
   if (loading) return <h1>loading...</h1>;
   return (
@@ -122,9 +130,10 @@ export function Records() {
 
           <ModalFooter display={"flex"} flexDirection="column">
             <Button
+              disabled={loadingMutation}
               colorScheme={"purple"}
               onClick={handleCreateRegister}
-              className="!bg-principal-900 w-[200px] !h-[50px] !font-normal"
+              className="!bg-principal-900 w-[200px] !h-[50px] !font-normal disabled:opacity-50"
             >
               Bater ponto
             </Button>
