@@ -1,6 +1,7 @@
 import { Button } from "../Button/Button";
 
 import HomeImage from "../../../assets/img/homeImage.png";
+import { ButtonRegister } from "../Button/ButtonRegister";
 
 export function SectionHome() {
   return (
@@ -19,8 +20,12 @@ export function SectionHome() {
         </p>
 
         <div className="flex gap-4">
-          <Button to="" text="Assinar agora" type="secundary" />
-          <Button to="" text="Ver planos" type="tertiary" />
+          <ButtonRegister
+            size="md"
+            text="Assinar agora"
+            styleButton="secundary"
+          />
+          <ButtonRegister size="md" text="Ver planos" styleButton="tertiary" />
         </div>
       </div>
 

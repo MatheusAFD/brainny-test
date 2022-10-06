@@ -6,7 +6,6 @@ import {
   ModalBody,
   ModalOverlay,
   ModalFooter,
-  Button,
   useDisclosure,
 } from "@chakra-ui/react";
 
@@ -22,13 +21,13 @@ import { useCreateRegisteredTimeMutation } from "../graphql/generated";
 import { useState } from "react";
 
 export function Records() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const userId = String(localStorage.getItem("userId"));
-  const date = new Date();
   const [loadingMutation, setLoadingMutation] = useState<boolean>();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const date = new Date();
+  const userId = String(localStorage.getItem("userId"));
 
   const [createRegisteredTime] = useCreateRegisteredTimeMutation();
-  const { data, loading, refetch } = useRegisteredTimesUserByUserQuery({
+  const { data, refetch } = useRegisteredTimesUserByUserQuery({
     variables: {
       id: userId,
     },
@@ -64,7 +63,6 @@ export function Records() {
     }
   }
 
-  if (loading) return <h1>loading...</h1>;
   return (
     <>
       <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr] ">
@@ -72,7 +70,8 @@ export function Records() {
         <div className="p-4 flex flex-col items-start">
           <div className="mt-3">
             <ButtonRegister
-              type="secundary"
+              size="lg"
+              styleButton="secundary"
               text="Registrar ponto"
               onClick={onOpen}
             />
@@ -84,16 +83,15 @@ export function Records() {
           </div>
 
           {data?.registeredTimes?.map((colaborator) => {
-            if (!loading)
-              return (
-                <CardList
-                  key={colaborator?.id}
-                  name={colaborator?.user?.name}
-                  id={colaborator?.id}
-                  date={colaborator?.created_at}
-                  hour={colaborator?.created_at}
-                />
-              );
+            return (
+              <CardList
+                key={colaborator?.id}
+                name={colaborator?.user?.name}
+                id={colaborator?.id}
+                date={colaborator?.created_at}
+                hour={colaborator?.created_at}
+              />
+            );
           })}
         </div>
       </main>
@@ -122,31 +120,26 @@ export function Records() {
               <p className="font-bold text-principal-900 text-3xl mt-[10px] text-center">
                 {formatData(date, "kk':'mm")}
               </p>
-              <span className="text-principal-900/50 mt-1 text-center">
+              <span className="text-principal-900/50 mt-2 text-center">
                 {formatData(date, "dd'/'MM'/'yyyy")}
               </span>
             </div>
           </ModalBody>
 
-          <ModalFooter display={"flex"} flexDirection="column">
-            <Button
+          <ModalFooter display={"flex"} flexDirection="column" mb="48px">
+            <ButtonRegister
+              size="md"
               disabled={loadingMutation}
-              colorScheme={"purple"}
+              text="Bater ponto"
+              styleButton="secundary"
               onClick={handleCreateRegister}
-              className="!bg-principal-900 w-[200px] !h-[50px] !font-normal disabled:opacity-50"
-            >
-              Bater ponto
-            </Button>
-            <Button
-              h={50}
-              mt={"10px"}
-              bg="white"
-              mb="48px"
-              className=" w-[200px] !font-normal  !text-principal-900 border border-principal-900"
+            />
+            <ButtonRegister
+              size="md"
+              text="Cancelar"
+              styleButton="primary"
               onClick={onClose}
-            >
-              Cancelar
-            </Button>
+            />
           </ModalFooter>
         </ModalContent>
       </Modal>

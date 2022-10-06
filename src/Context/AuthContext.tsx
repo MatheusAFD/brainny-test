@@ -56,12 +56,14 @@ function AuthProvider(props: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    if (roleUser === "admin" && location.pathname !== "/dashboard") {
-      navigate("/dashboard");
-    }
+    if (location.pathname !== "/") {
+      if (roleUser === "admin" && location.pathname !== "/dashboard") {
+        navigate("/dashboard");
+      }
 
-    if (roleUser === "user" && location.pathname !== "/meus-registros") {
-      navigate("/meus-registros");
+      if (roleUser === "user" && location.pathname !== "/meus-registros") {
+        navigate("/meus-registros");
+      }
     }
   }, []);
 
