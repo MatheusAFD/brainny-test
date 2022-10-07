@@ -1,15 +1,14 @@
-import { Button } from "../Button/Button";
-
 import HomeImage from "../../../assets/img/homeImage.png";
+import { ButtonRegister } from "../Button/ButtonRegister";
 
 export function SectionHome() {
   return (
-    <section className="flex justify-between container pt-32 text-white relative z-30">
-      <div className="max-w-[50%] blur-effect">
+    <section className="flex flex-col-reverse lg:flex-row justify-center  md:justify-between container pt-36 text-white ">
+      <div className="lg:max-w-[50%]  p-4 relative blur-effect">
         <p className="text-2xl tracking-[0.165em] uppercase font-light">
           Esquece o ponto manual
         </p>
-        <h1 className="text-[40px] leading-[60px] pt-3 max-w-[520px] font-bold">
+        <h1 className="text-3xl sm:text-[40px] leading-10 md:leading-[60px] pt-3 max-w-[520px] font-bold">
           Chegou a nova realidade para{" "}
           <span className="text-secundary-700">Controle de Pontos</span>
         </h1>
@@ -18,14 +17,26 @@ export function SectionHome() {
           fácil e rápida, possuindo também uma Dashboard intuitiva.
         </p>
 
-        <div className="flex gap-4">
-          <Button to="" text="Assinar agora" type="secundary" />
-          <Button to="" text="Ver planos" type="tertiary" />
+        <div className="flex gap-4 relative star-home">
+          <ButtonRegister
+            size="md"
+            text="Assinar agora"
+            styleButton="landing"
+          />
+          <ButtonRegister
+            size="md"
+            text="Ver planos"
+            styleButton="landing-secundary"
+          />
         </div>
       </div>
 
-      <div className="-mt-20 ">
-        <img src={HomeImage} className="max-w-[700px]" alt="" />
+      <div className="-mt-20">
+        <img
+          src={HomeImage}
+          className="max-w-sm w-[90%] lg:max-w-[700px] "
+          alt=""
+        />
       </div>
     </section>
   );

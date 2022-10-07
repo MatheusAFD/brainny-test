@@ -7,7 +7,7 @@ import { SectionHome } from "../components/Landing/SectionHome/SectionHome";
 export function Landing() {
   return (
     <>
-      <div className="min-h-screen bg-detail bg-[#300D7B] bg-cover bg-no-repeat">
+      <div className="min-h-screen bg-detail bg-[#210068] bg-cover bg-no-repeat backdrop-blur-[25px]">
         <Header />
         <SectionHome />
         <Companies />

@@ -1,23 +1,38 @@
-import { Link } from "react-router-dom";
+import { ButtonHTMLAttributes } from "react";
 import classNames from "classnames";
-
-export function ButtonRegister(props: {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  type: "primary" | "secundary" | "tertiary";
-  onClick?: () => void;
-}) {
+  styleButton:
+    | "primary"
+    | "secundary"
+    | "tertiary"
+    | "landing"
+    | "landing-secundary";
+  size: "md" | "lg";
+  resposive?: boolean;
+}
+
+export function ButtonRegister(props: ButtonProps) {
   return (
-    <input
-      onClick={props.onClick}
+    <button
+      {...props}
       type="button"
-      value={props.text}
       className={classNames(
-        "min-h-[50px] min-w-[200px] text-sm rounded-md flex items-center justify-center cursor-pointer",
+        "min-h-[50px] text-sm rounded-md flex items-center justify-center cursor-pointer disabled:opacity-60",
         {
-          "bg-principal-900 text-white": props.type === "secundary",
-          "bg-white text-principal-900": props.type === "primary",
+          "bg-principal-900 text-white": props.styleButton === "secundary",
+          "bg-secundary-700 text-white": props.styleButton === "landing",
+          " text-white border border-white":
+            props.styleButton === "landing-secundary",
+          " bg-white text-principal-900 border border-principal-900 mt-[10px]":
+            props.styleButton === "primary",
+          "w-[160px]": props.size === "md",
+          "w-[200px]": props.size === "lg",
+          "hidden md:block": props.resposive === true,
         }
       )}
-    />
+    >
+      {props.text}
+    </button>
   );
 }

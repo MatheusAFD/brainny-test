@@ -7,8 +7,8 @@
 }
 
 .blur-effect {
-  @apply before:-z-10  before:blur-[150px] 
-  before:rounded-full before:bg-secundary-700/40 before:absolute before:w-[45%] before:h-[800px]
+  @apply before:blur-[250px] 
+  before:rounded-full before:bg-secundary-700/40 before:absolute before:w-[100%] before:h-[800px]
   before:-top-32;
 }
 
@@ -19,12 +19,41 @@
 
 .smokeOne {
   @apply before:absolute before:left-0 before:z-0 before:top-[360px]  before:bg-smokeOne before:bg-cover before:bg-no-repeat 
-  before:h-[964px] before:w-[720px];
+  before:h-[964px] before:md:w-[720px] before:w-[100%] before:opacity-40;
 }
 .slide-content {
   @apply !max-w-[333px];
 }
 
 .detail-card-dashboard {
-  @apply before:absolute before:w-[5px] before:h-[45px] before:rounded-[30px] before:bg-secundary-700 before:left-4;
+  @apply before:absolute before:w-[5px] before:h-[45px] before:rounded-[30px] before:bg-[#6FCF97] md:before:bg-secundary-700 before:left-4;
+}
+.smoke-login {
+  @apply before:absolute before:right-0 before:-z-20 before:bg-smokeRight before:bg-cover before:bg-no-repeat 
+        before:h-[580px] before:md:w-[490px] before:-top-16 before:w-[100%] before:opacity-50;
+}
+
+.star-home {
+  @apply before:absolute before:bg-star before:bottom-0 before:right-0 before:z-50 before:bg-contain 
+        before:h-[50px] before:md:w-[50px];
+}
+
+.star-companies {
+  @apply before:absolute before:bg-star before:top-8 before:right-20  before:z-50 before:bg-contain 
+        before:h-[80px] before:md:w-[80px] before:rotate-[32px];
+}
+
+.star-pricing {
+  @apply before:absolute before:bg-star before:-bottom-[190px] before:-right-[275px]  before:z-50 before:bg-contain 
+        before:h-[50px] before:md:w-[50px] before:rotate-[32px];
+}
+
+.star-footer {
+  @apply before:absolute before:bg-star before:-top-20 before:right-32 before:z-50 before:bg-contain 
+        before:h-[80px] before:md:w-[80px] before:rotate-[32px];
+}
+
+.star-footer-left {
+  @apply before:absolute before:bg-star before:-top-32 before:left-32 before:z-50 before:bg-contain 
+        before:h-[100px] before:md:w-[100px] before:rotate-[32px];
 }

@@ -33,6 +33,7 @@ function AuthProvider(props: { children: ReactNode }) {
 
     if (response) {
       localStorage.setItem("token", `${response.data?.login.jwt}`);
+      localStorage.setItem("username", `${response.data?.login.user.username}`);
       localStorage.setItem("userId", `${response.data?.login.user.id}`);
       localStorage.setItem(
         "roleUser",
@@ -41,12 +42,14 @@ function AuthProvider(props: { children: ReactNode }) {
       setAuthenticaded(true);
     }
 
-    if (response.data?.login.jwt) {
-      if (response.data.login.user.role?.type === "admin") {
-        navigate("/dashboard");
-      } else {
-        navigate("/meus-registros");
-      }
+    if (!response.data?.login.jwt) {
+      navigate("/login");
+    }
+    if (response.data?.login.user.role?.type === "admin") {
+      navigate("/dashboard");
+    }
+    if (response.data?.login.user.role?.type === "user") {
+      navigate("/meus-registros");
     }
   }
 
@@ -56,12 +59,14 @@ function AuthProvider(props: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    if (roleUser === "admin" && location.pathname !== "/dashboard") {
-      navigate("/dashboard");
-    }
+    if (location.pathname !== "/") {
+      if (roleUser === "admin" && location.pathname !== "/dashboard") {
+        navigate("/dashboard");
+      }
 
-    if (roleUser === "user" && location.pathname !== "/meus-registros") {
-      navigate("/meus-registros");
+      if (roleUser === "user" && location.pathname !== "/meus-registros") {
+        navigate("/meus-registros");
+      }
     }
   }, []);
 
