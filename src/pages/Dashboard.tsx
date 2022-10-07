@@ -1,10 +1,14 @@
 import { useRegisteredTimesQuery } from "../graphql/generated";
-
 import { CardList } from "../components/Dashboard/CardList";
 import { SpanHead } from "../components/Dashboard/SpanHead";
 import { Sidebar } from "../components/Sidebar/Sidebar";
+import { Logout } from "../components/Landing/Button/Logout";
+import { useContext } from "react";
+import { Context } from "../Context/AuthContext";
 
 export function Dashboard() {
+  const { handleLogout } = useContext(Context);
+
   const { data } = useRegisteredTimesQuery({
     context: {
       headers: {
@@ -14,15 +18,17 @@ export function Dashboard() {
   });
 
   return (
-    <main className="bg-[#F2F2F2] w-full h-screen grid grid-cols-[auto_1fr]">
+    <main className="bg-[#F2F2F2] min-h-screen">
       <Sidebar type="admin" />
-
-      <ul className="p-4 ">
-        <div className="flex gap-36 mb-4 mt-10">
+      <ul className="p-4 flex flex-col items-start ml-0 md:ml-48 ">
+        <div className="flex md:gap-36 flex-wrap justify-around  md:justify-start p-4 gap-4 w-full mb-3">
           <SpanHead text="Colaborador" />
-          <SpanHead text="Data" />
-          <SpanHead text="Hora" className="ml-12" />
+          <div className="flex gap-12 ">
+            <SpanHead text="Data" />
+            <SpanHead text="Hora" className="-mr-4 md:ml-44" />
+          </div>
         </div>
+
         {data?.registeredTimes?.map((colaborator) => {
           return (
             <CardList
@@ -35,6 +41,7 @@ export function Dashboard() {
           );
         })}
       </ul>
+      <Logout onClick={handleLogout} className="bottom-0 absolute p-4" />
     </main>
   );
 }

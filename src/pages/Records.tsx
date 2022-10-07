@@ -66,7 +66,7 @@ export function Records() {
           />
         </HeaderMenu>
 
-        <div className="p-4 flex flex-col items-start ml-0 md:ml-48 ">
+        <div className="p-2 sm:p-4 flex flex-col items-start ml-0 md:ml-48 ">
           <div className="mt-3">
             <ButtonRegister
               size="lg"
@@ -76,7 +76,7 @@ export function Records() {
               onClick={onOpen}
             />
           </div>
-          <div className="flex md:gap-36 flex-wrap justify-around  md:justify-start p-4 gap-4 w-full mb-3">
+          <div className="flex md:gap-36 flex-wrap justify-around md:justify-start p-4 gap-4 w-full mb-3">
             <SpanHead text="Colaborador" />
             <div className="flex gap-12 ">
               <SpanHead text="Data" />
@@ -96,23 +96,22 @@ export function Records() {
             );
           })}
         </div>
+        <ModalDialog onOpen={onOpen} isOpen={isOpen} onClose={onClose}>
+          <ButtonRegister
+            size="md"
+            disabled={loadingMutation}
+            text="Bater ponto"
+            styleButton="secundary"
+            onClick={handleCreateRegister}
+          />
+          <ButtonRegister
+            size="md"
+            text="Cancelar"
+            styleButton="primary"
+            onClick={onClose}
+          />
+        </ModalDialog>
       </main>
-
-      <ModalDialog onOpen={onOpen} isOpen={isOpen} onClose={onClose}>
-        <ButtonRegister
-          size="md"
-          disabled={loadingMutation}
-          text="Bater ponto"
-          styleButton="secundary"
-          onClick={handleCreateRegister}
-        />
-        <ButtonRegister
-          size="md"
-          text="Cancelar"
-          styleButton="primary"
-          onClick={onClose}
-        />
-      </ModalDialog>
     </>
   );
 }

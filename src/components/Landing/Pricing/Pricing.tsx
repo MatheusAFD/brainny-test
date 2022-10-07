@@ -9,7 +9,6 @@ import classNames from "classnames";
 
 export function Pricing() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
 
   const [ref, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -17,9 +16,6 @@ export function Pricing() {
 
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
-    },
-    created() {
-      setLoaded(true);
     },
 
     breakpoints: {
@@ -38,20 +34,24 @@ export function Pricing() {
   });
 
   return (
-    <section className=" container mt-[90px] pb-[100px] pt-[90px]  flex flex-col justify-center items-center ">
-      <h2 className="text-4xl font-extrabold text-white leading-[60px]">
+    <section className="p-4 sm:p-0 container flex flex-col justify-center items-center relative star-companies">
+      <h2 className="text-4xl mt-24 font-extrabold text-white leading-[60px] relative star-pricing  ">
         Encontre o plano perfeito
       </h2>
       <p className=" text-white/75 max-w-[53ch] text-center leading-8 ">
         Escolha o plano que melhor se encaixa na sua empresa e faça sua
         assinatura, dentro de 72h iremos liberar seus acessos.
       </p>
+      <div
+        className="p-6 before:blur-[150px] 
+  before:rounded-full before:bg-secundary-700/90 before:absolute before:w-[20%] before:right-0 before:h-[200px] before:top-54"
+      ></div>
       <div className="container grid grid-cols-[16px_auto_16px] justify-center items-center">
         <ArrowLeft
           size={20}
           color="#ffffff"
           weight="bold"
-          className="mr-20 cursor-pointer z-50"
+          className="-mr-20 cursor-pointer z-50"
           onClick={(e: any) =>
             e.stopPropagation() || instanceRef.current?.prev()
           }
@@ -59,11 +59,12 @@ export function Pricing() {
 
         <div
           ref={ref}
-          className="mt-[70px] m-auto max-w-[350px] sm:max-w-[350px] md:max-w-[750px]  xl:max-w-[960px]  flex gap-y-10 keen-slider z-0 items-center"
+          className="mt-6 m-auto max-w-[90%] sm:max-w-[350px] md:max-w-[750px] xl:max-w-[960px] flex gap-y-10 keen-slider z-0 items-center mb-20 md:mb-28"
         >
           {Object.entries(PricingData).map(([key, value]) => {
             return (
               <CardPricing
+                key={key}
                 price={value.price}
                 colaborators={value.colaborators}
                 type={value.title}
@@ -71,7 +72,7 @@ export function Pricing() {
                 showButton={value.current === currentSlide ? true : false}
                 current={value.current}
                 className={classNames("keen-slider__slide slide-content", {
-                  "!bg-[#8A53FF]/10 !h-[491px] ":
+                  "!bg-[#8A53FF]/10 backdrop-blur-[2.5px] !h-[491px]":
                     value.current === currentSlide,
                   "opacity-30    !h-[411px]  ": value.current !== currentSlide,
                 })}
@@ -83,7 +84,7 @@ export function Pricing() {
         <ArrowRight
           size={20}
           weight="bold"
-          className="ml-3 cursor-pointer text-white"
+          className="-ml-3 sm:ml-4 z-50 cursor-pointer text-white relative"
           onClick={(e: any) =>
             e.stopPropagation() || instanceRef.current?.next()
           }

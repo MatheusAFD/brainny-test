@@ -7,6 +7,7 @@ import order from "../../assets/img/order.png";
 
 import box from "../../assets/img/box.png";
 import { LogoutOutlined } from "@ant-design/icons";
+import { Logout } from "../Landing/Button/Logout";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
   const { handleLogout } = useContext(Context);
@@ -24,14 +25,7 @@ export function Sidebar(props: { type: "admin" | "colaborator" }) {
         <img src={props.type === "admin" ? box : order} alt="" />
         {props.type === "admin" ? <>Dashboard</> : <>Meus registros</>}
       </span>
-
-      <button
-        className="flex items-center gap-[10px] px-4 absolute bottom-0 cursor-pointer py-6 "
-        onClick={handleLogout}
-      >
-        <LogoutOutlined className="text-2xl" />
-        <p>Sair</p>
-      </button>
+      <Logout className="bottom-0 absolute p-4" onClick={handleLogout} />
     </nav>
   );
 }

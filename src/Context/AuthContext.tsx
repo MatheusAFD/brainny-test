@@ -42,12 +42,14 @@ function AuthProvider(props: { children: ReactNode }) {
       setAuthenticaded(true);
     }
 
-    if (response.data?.login.jwt) {
-      if (response.data.login.user.role?.type === "admin") {
-        navigate("/dashboard");
-      } else {
-        navigate("/meus-registros");
-      }
+    if (!response.data?.login.jwt) {
+      navigate("/login");
+    }
+    if (response.data?.login.user.role?.type === "admin") {
+      navigate("/dashboard");
+    }
+    if (response.data?.login.user.role?.type === "user") {
+      navigate("/meus-registros");
     }
   }
 

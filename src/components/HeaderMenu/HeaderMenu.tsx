@@ -3,15 +3,16 @@ import { MenuOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Context } from "../../Context/AuthContext";
 import { ButtonMobile } from "../Landing/Button/ButtonMobile";
 import { formatData } from "../../utils/format-data";
+import { Logout } from "../Landing/Button/Logout";
 
 interface HeaderMenu {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export function HeaderMenu(props: HeaderMenu) {
   const { handleLogout } = useContext(Context);
-  const date = new Date();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const date = new Date();
   const user = localStorage.getItem("username");
 
   return (
@@ -20,13 +21,7 @@ export function HeaderMenu(props: HeaderMenu) {
         <div className="fixed md:hidden right-0 min-h-screen w-64 z-50 bg-[#F2F2F2] shadow-2xl ">
           <div className="border-b border-[#AFAFAF] p-6 flex items-center">
             <p className="text-sm text-[#303030] font-light">Novo Registro</p>
-            <button
-              className="flex items-center gap-[10px] px-4 cursor-pointer "
-              onClick={handleLogout}
-            >
-              <LogoutOutlined className="text-2xl" />
-              <p>Sair</p>
-            </button>
+            <Logout onClick={handleLogout} />
           </div>
 
           <div className="flex flex-col gap-5 p-4">

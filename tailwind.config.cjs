@@ -10,6 +10,8 @@ module.exports = {
         detail: "url(/detail.png)",
         smokeOne: "url(/smokeOne.png)",
         smokeTwo: "url(/smokeTwo.png)",
+        smokeRight: "url(/smokeRight.png)",
+        star: "url(/star.png)",
         "card-gradient":
           "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.8)), #8A53FF;",
       },
