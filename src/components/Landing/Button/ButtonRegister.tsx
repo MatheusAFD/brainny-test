@@ -4,6 +4,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   styleButton: "primary" | "secundary" | "tertiary";
   size: "md" | "lg";
+  resposive?: boolean;
 }
 
 export function ButtonRegister(props: ButtonProps) {
@@ -19,6 +20,7 @@ export function ButtonRegister(props: ButtonProps) {
             props.styleButton === "primary",
           "w-[160px]": props.size === "md",
           "w-[200px]": props.size === "lg",
+          "hidden md:block": props.resposive === true,
         }
       )}
     >

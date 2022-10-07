@@ -33,6 +33,7 @@ function AuthProvider(props: { children: ReactNode }) {
 
     if (response) {
       localStorage.setItem("token", `${response.data?.login.jwt}`);
+      localStorage.setItem("username", `${response.data?.login.user.username}`);
       localStorage.setItem("userId", `${response.data?.login.user.id}`);
       localStorage.setItem(
         "roleUser",

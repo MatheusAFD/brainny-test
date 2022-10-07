@@ -26,5 +26,5 @@
 }
 
 .detail-card-dashboard {
-  @apply before:absolute before:w-[5px] before:h-[45px] before:rounded-[30px] before:bg-secundary-700 before:left-4;
+  @apply before:absolute before:w-[5px] before:h-[45px] before:rounded-[30px] before:bg-[#6FCF97] md:before:bg-secundary-700 before:left-4;
 }

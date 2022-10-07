@@ -12,7 +12,7 @@ export function Sidebar(props: { type: "admin" | "colaborator" }) {
   const { handleLogout } = useContext(Context);
 
   return (
-    <nav className="w-[180px] bg-white h-screen fixed ">
+    <nav className="w-[180px] bg-white h-screen fixed hidden md:block">
       <div className="flex justify-center items-center w-full h-24">
         <LogoPurple width={134} height={31} />
       </div>
