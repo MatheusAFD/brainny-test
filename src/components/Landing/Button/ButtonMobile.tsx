@@ -4,6 +4,7 @@ import classNames from "classnames";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   styleButton: "primary" | "secundary";
   text: string;
+  ref?: any;
 }
 
 export function ButtonMobile(props: ButtonProps) {

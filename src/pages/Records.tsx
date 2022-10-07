@@ -76,11 +76,11 @@ export function Records() {
               onClick={onOpen}
             />
           </div>
-          <div className="flex md:gap-36 flex-wrap justify-around md:justify-start p-4 gap-4 w-full mb-3">
+          <div className="flex md:gap-36 flex-wrap justify-around md:justify-start p-2 lg:p-4 gap-4 md:mb-3 w-full">
             <SpanHead text="Colaborador" />
             <div className="flex gap-12 ">
               <SpanHead text="Data" />
-              <SpanHead text="Hora" className="-mr-4 md:ml-44" />
+              <SpanHead text="Hora" className="-mr-4 md:ml-40" />
             </div>
           </div>
 

@@ -6,14 +6,14 @@ import { LogoPurple } from "../Logo/LogoPurple";
 import order from "../../assets/img/order.png";
 
 import box from "../../assets/img/box.png";
-import { LogoutOutlined } from "@ant-design/icons";
+
 import { Logout } from "../Landing/Button/Logout";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
   const { handleLogout } = useContext(Context);
 
   return (
-    <nav className="w-[180px] bg-white h-screen fixed hidden md:block">
+    <nav className="w-[180px] bg-white h-screen fixed hidden md:block ">
       <div className="flex justify-center items-center w-full h-24">
         <LogoPurple width={134} height={31} />
       </div>

@@ -6,8 +6,8 @@ interface Logout extends ButtonHTMLAttributes<HTMLButtonElement> {}
 export function Logout(props: Logout) {
   return (
     <button
-      className="flex items-center gap-[10px] px-4 cursor-pointer "
       {...props}
+      className="flex items-center gap-[10px] px-4 cursor-pointer "
     >
       <LogoutOutlined className="text-2xl" />
       <p>Sair</p>
