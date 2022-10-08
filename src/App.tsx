@@ -4,7 +4,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import { Router } from "./Router/Router";
 import { AuthProvider } from "./Context/AuthContext";
-
 import { client } from "../src/lib/apollo";
 
 function App() {

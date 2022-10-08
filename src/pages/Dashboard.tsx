@@ -19,8 +19,8 @@ export function Dashboard() {
 
   return (
     <main className="bg-[#F2F2F2] min-h-screen">
-      <div className="p-4">
-        <Logout onClick={handleLogout} className="bottom-0 absolute p-4" />
+      <div className="bottom-0 absolute p-4">
+        <Logout onClick={handleLogout}  />
       </div>
       <Sidebar type="admin" />
       <ul className="p-4 flex flex-col items-start ml-0 md:ml-48 ">
