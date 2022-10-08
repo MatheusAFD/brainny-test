@@ -34,7 +34,10 @@ export function Pricing() {
   });
 
   return (
-    <section className="p-4 sm:p-0 container flex flex-col justify-center items-center relative star-companies">
+    <section
+      id="planos"
+      className="p-4 sm:p-0 container flex flex-col justify-center items-center relative star-companies"
+    >
       <h2 className="text-4xl mt-24 font-extrabold text-white leading-[60px] relative star-pricing  ">
         Encontre o plano perfeito
       </h2>

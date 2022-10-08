@@ -1,9 +1,13 @@
 import HomeImage from "../../../assets/img/homeImage.png";
 import { ButtonRegister } from "../Button/ButtonRegister";
+import { NavItem } from "../Button/NavLanding";
 
 export function SectionHome() {
   return (
-    <section className="flex flex-col-reverse lg:flex-row justify-center  md:justify-between container pt-36 text-white ">
+    <section
+      id="home"
+      className="flex flex-col-reverse lg:flex-row justify-center  md:justify-between container pt-36 text-white "
+    >
       <div className="lg:max-w-[50%]  p-4 relative blur-effect">
         <p className="text-2xl tracking-[0.165em] uppercase font-light">
           Esquece o ponto manual
@@ -18,13 +22,10 @@ export function SectionHome() {
         </p>
 
         <div className="flex gap-4 relative star-home">
-          <ButtonRegister
-            size="md"
-            text="Assinar agora"
-            styleButton="landing"
-          />
-          <ButtonRegister
-            size="md"
+          <NavItem href="#planos" text="Assinar agora" styleButton="landing" />
+
+          <NavItem
+            href="#planos"
             text="Ver planos"
             styleButton="landing-secundary"
           />

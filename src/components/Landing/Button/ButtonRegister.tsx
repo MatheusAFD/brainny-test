@@ -18,7 +18,7 @@ export function ButtonRegister(props: ButtonProps) {
       {...props}
       type="button"
       className={classNames(
-        "min-h-[50px] text-sm rounded-md flex items-center justify-center cursor-pointer disabled:opacity-60",
+        "min-h-[50px] text-sm rounded-md flex items-center justify-center cursor-pointer hover:brightness-125 disabled:opacity-60",
         {
           "bg-principal-900 text-white": props.styleButton === "secundary",
           "bg-secundary-700 text-white": props.styleButton === "landing",

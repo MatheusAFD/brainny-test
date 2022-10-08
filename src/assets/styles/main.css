@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:target {
+  @apply scroll-mt-20 md:scroll-mt-12;
+}
+
 .container {
   @apply max-w-[1260px] m-auto;
 }

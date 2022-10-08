@@ -7,7 +7,7 @@ export function Logout(props: Logout) {
   return (
     <button
       {...props}
-      className="flex items-center gap-[10px] px-4 cursor-pointer "
+      className="flex items-center gap-[10px] px-4 cursor-pointer hover:text-principal-900 "
     >
       <LogoutOutlined className="text-2xl" />
       <p>Sair</p>
