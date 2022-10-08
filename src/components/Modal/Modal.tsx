@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,7 +9,6 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 
-import { ReactNode } from "react";
 import { formatData } from "../../utils/format-data";
 import clock from "../../assets/img/clock.png";
 

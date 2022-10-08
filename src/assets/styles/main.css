@@ -8,7 +8,7 @@
 
 .blur-effect {
   @apply before:blur-[250px] 
-  before:rounded-full before:bg-secundary-700/40 before:absolute before:w-[100%] before:h-[800px]
+  before:rounded-full before:bg-secundary-700/40 before:absolute before:w-[90%] before:h-[800px]
   before:-top-32;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .star-pricing {
-  @apply before:absolute before:bg-star before:-bottom-[190px] before:-right-[275px]  before:z-50 before:bg-contain 
+  @apply before:absolute before:bg-star before:-bottom-[190px] md:before:-right-[100px] lg:before:-right-[275px]  before:z-50 before:bg-contain 
         before:h-[50px] before:md:w-[50px] before:rotate-[32px];
 }
 

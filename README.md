@@ -28,7 +28,7 @@ Aqui estão algumas features do projeto:
 - Gerenciar registros de horários
 - Registrar horário de entrada e saída do colaborador
 - Somente os Colaboradores podem bater o ponto
-- penas o Administrador do sistema poderá visualizar a lista com os registros de todos os Colaboradores no dashboard do sistema
+- Apenas o Administrador do sistema poderá visualizar a lista com os registros de todos os Colaboradores no dashboard do sistema
 - O sistema utilizará autenticação com JWT
 - integração com API GraphQL fornecida utilizando Apollo Client.
 
@@ -55,7 +55,13 @@ cd brainny-test
 <p>4. Criar um arquivo .env no diretório raíz do projeto com esse código</p>
 
 ```
-VITE_API_URI= "API URL HERE"
+VITE_API_URI= "URL DA API"
+```
+
+<p>5. Rodar o projeto</p>
+
+```
+yarn dev | npm run dev
 ```
 
 <h2>💻 Construído com</h2>
@@ -71,3 +77,4 @@ Tecnologias que usei no projeto:
 - <a href="https://date-fns.org/">Date-fns</a>
 - <a href="https://github.com/JedWatson/classnames" rel="noreferrer">Classnames</a>
 - <a href="https://tailwindcss.com/docs/installation" rel="noreferrer">TailwindCSS</a>
+- <a href="https://vitejs.dev/guide/" rel="noreferrer">Vite</a>

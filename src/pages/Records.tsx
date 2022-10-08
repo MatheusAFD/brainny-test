@@ -42,6 +42,7 @@ export function Records() {
         },
       });
 
+      refetch({ id: userId });
       if (response) {
         onClose();
       }
@@ -49,7 +50,6 @@ export function Records() {
       console.log(err);
     } finally {
       setLoadingMutation(false);
-      refetch({ id: userId });
     }
   }
 

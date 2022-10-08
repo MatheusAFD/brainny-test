@@ -1,12 +1,9 @@
 import { useContext } from "react";
 
 import { Context } from "../../Context/AuthContext";
-
 import { LogoPurple } from "../Logo/LogoPurple";
 import order from "../../assets/img/order.png";
-
 import box from "../../assets/img/box.png";
-
 import { Logout } from "../Landing/Button/Logout";
 
 export function Sidebar(props: { type: "admin" | "colaborator" }) {
@@ -25,7 +22,9 @@ export function Sidebar(props: { type: "admin" | "colaborator" }) {
         <img src={props.type === "admin" ? box : order} alt="" />
         {props.type === "admin" ? <>Dashboard</> : <>Meus registros</>}
       </span>
-      <Logout className="bottom-0 absolute p-4" onClick={handleLogout} />
+      <div className="bottom-0 absolute p-4">
+        <Logout onClick={handleLogout} />
+      </div>
     </nav>
   );
 }

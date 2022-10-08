@@ -1,11 +1,4 @@
-import { ReactNode, useContext, useRef, useState } from "react";
-import { MenuOutlined, LogoutOutlined } from "@ant-design/icons";
-import { Context } from "../../Context/AuthContext";
-import { ButtonMobile } from "../Landing/Button/ButtonMobile";
-import { formatData } from "../../utils/format-data";
-import { Logout } from "../Landing/Button/Logout";
 import {
-  Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -15,6 +8,13 @@ import {
   DrawerOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
+import { ReactNode, useContext, useRef } from "react";
+import { MenuOutlined } from "@ant-design/icons";
+
+import { Context } from "../../Context/AuthContext";
+import { formatData } from "../../utils/format-data";
+import { ButtonMobile } from "../Landing/Button/ButtonMobile";
+import { Logout } from "../Landing/Button/Logout";
 
 interface HeaderMenu {
   children?: ReactNode;

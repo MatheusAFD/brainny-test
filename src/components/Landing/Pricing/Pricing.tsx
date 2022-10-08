@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+import classNames from "classnames";
 
 import { ArrowLeft, ArrowRight } from "phosphor-react";
 import { CardPricing } from "./CardPricing/CardPricing";
 import { PricingData } from "../../../utils/DataPricing";
-import classNames from "classnames";
+import "keen-slider/keen-slider.min.css";
 
 export function Pricing() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -44,9 +44,9 @@ export function Pricing() {
       </p>
       <div
         className="p-6 before:blur-[150px] 
-  before:rounded-full before:bg-secundary-700/90 before:absolute before:w-[20%] before:right-0 before:h-[200px] before:top-54"
+        before:rounded-full before:bg-secundary-700/90 before:absolute before:w-[20%] before:right-0 before:h-[200px] before:top-54"
       ></div>
-      <div className="container grid grid-cols-[16px_auto_16px] justify-center items-center">
+      <div className="container grid grid-cols-[32px_auto_auto] justify-center items-center">
         <ArrowLeft
           size={20}
           color="#ffffff"
